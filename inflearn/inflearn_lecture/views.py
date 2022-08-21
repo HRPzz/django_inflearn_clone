@@ -12,3 +12,9 @@ def lecture_list(request):
     return render(request, 'inflearn_lecture/lecture_list.html',
                 {'texts': texts, 'hot_lecture': hot_lecture}
                 )
+
+def login(request):
+    return render(request, 'inflearn_lecture/login.html')
+
+def join(request):
+    return render(request, 'inflearn_lecture/join.html')
