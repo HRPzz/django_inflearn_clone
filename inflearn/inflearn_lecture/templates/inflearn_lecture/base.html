@@ -72,10 +72,14 @@
                 <img src="https://cdn.inflearn.com/assets/brand/chuseok_logo.png" width="150">
             </a>
             <ul>
+                <!-- a 태그로 인해 inflearn_lecture/views.py 의 해당 함수가 실행됨 -->
                 <a href="/lecture_list"><li>강의보기</li></a>
-                <a href="/login"><li>로그인</li></a>
-                <a href="/join"><li>회원가입</li></a>
-                <li>메뉴4</li>
+                {% if user.is_authenticated %} <!-- 유저가 로그인되어 있을 경우 -->
+                    <a href="/logout"><li>로그아웃</li></a>
+                {% else %} <!-- 유저가 로그인되어 있지 않을 경우 -->
+                    <a href="/login"><li>로그인</li></a>
+                    <a href="/join"><li>회원가입</li></a>
+                {% endif %}
                 <li>메뉴5</li>
             </ul>
         </nav>

@@ -17,6 +17,23 @@ def lecture_list(request):
                 )
 
 def login(request):
+
+    print('login 실행!')
+    if request.method == 'POST':  # POST 요청이 들어오면 로그인 진행
+        print('login post')
+
+        email = request.POST['email']
+        pwd = request.POST['pwd']
+
+        user = auth.authenticate(request, username=email, password=pwd)  # 유저 정보 찾아오기
+
+        if user is None:  # 유저 정보가 없는 경우
+            print('회원가입된 사람이 아님')
+            return redirect('/join')  # 회원가입 페이지로 이동
+        else:  # 유저 정보가 있는 경우
+            auth.login(request, user)  # 로그인
+            return redirect('/')  # 로그인 끝나고 홈으로 돌아감
+
     return render(request, 'inflearn_lecture/login.html')
 
 def join(request):
@@ -27,9 +44,13 @@ def join(request):
         email = request.POST['email']
         pwd = request.POST['pwd']
         
-        User.objects.create_user(username=email, password=pwd)
+        User.objects.create_user(username=email, password=pwd)  # 회원가입
 
         return redirect('/')  # 회원가입 끝나고 홈으로 돌아감
 
     print('join 마지막 부분')
     return render(request, 'inflearn_lecture/join.html')
+
+def logout(request):
+    auth.logout(request)  # 로그아웃
+    return redirect('/')  # 로그아웃 끝나고 홈으로 돌아감

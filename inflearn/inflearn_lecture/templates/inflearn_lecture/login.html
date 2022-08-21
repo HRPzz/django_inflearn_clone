@@ -3,7 +3,9 @@
 {% block content %}
 
     <div style="width: 500px; margin: auto; margin-top: 200px, margin-bottom: 200px;">
-        <form>
+        <!-- html 에서 views 로 form 데이터 넘김 -->
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}  <!-- 보안 설정 -->
             <div class="form-group">
                 <label for="exampleInputEmail1">로그인 이메일</label>
                 <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요"/>
