@@ -10,6 +10,8 @@ class myText(models.Model):
     contents = models.CharField(max_length=200)
     img_url = models.CharField(max_length=200)
 
+    category = models.CharField(max_length=200, null=True)  # 카테고리 설정
+
     board_text = RichTextUploadingField(null=True)  # ckeditor
 
     def publish(self):
