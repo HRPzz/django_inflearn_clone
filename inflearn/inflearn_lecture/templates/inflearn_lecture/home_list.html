@@ -1,6 +1,16 @@
 {% extends 'inflearn_lecture/base.html' %}
 
 {% block content %}
-    여기는 홈!!!
-    {{ texts }}  <!-- db 에 있는 myText 데이터 -->
+
+    <h2>인기 강의</h2>
+
+    <!-- texts: db 에 있는 myText 데이터 -->
+    {% for text in texts %}
+        <img src="{{ text.img_url }}" width="100">
+        <br>
+        {{ text.title }}
+        <br>
+
+    {% endfor %}
+
 {% endblock %}
