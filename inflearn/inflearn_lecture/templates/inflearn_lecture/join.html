@@ -3,7 +3,9 @@
 {% block content %}
 
     <div style="width: 500px; margin: auto; margin-top: 200px, margin-bottom: 200px;">
-        <form>
+        <!-- inflearn_lecture/urls.py 의 path('join', ...) 에 form 데이터를 넘김 => inflearn_lecture/views.py 의 join 함수로 form 데이터가 넘어가게 됨 -->
+        <form method="POST" action="{% url 'join' %}">
+            {% csrf_token %}  <!-- 보안 설정 -->
             <div class="form-group">
                 <label for="exampleInputEmail1">로그인 이메일</label>
                 <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="이메일을 입력하세요"/>

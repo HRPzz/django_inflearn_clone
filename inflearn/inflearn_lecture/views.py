@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import auth
 from .models import myText
+
 
 # Create your views here.
 def home_list(request):
@@ -17,4 +20,16 @@ def login(request):
     return render(request, 'inflearn_lecture/login.html')
 
 def join(request):
+    print('join 실행!')
+    if request.method == 'POST':  # POST 요청이 들어오면 회원가입 진행
+        print('여기는 포스팅요청')
+
+        email = request.POST['email']
+        pwd = request.POST['pwd']
+        
+        User.objects.create_user(username=email, password=pwd)
+
+        return redirect('/')  # 회원가입 끝나고 홈으로 돌아감
+
+    print('join 마지막 부분')
     return render(request, 'inflearn_lecture/join.html')
