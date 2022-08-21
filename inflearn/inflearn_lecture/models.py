@@ -8,7 +8,7 @@ class myText(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     contents = models.CharField(max_length=200)
-    img_url = models.CharField(max_length=200)
+    img_url = models.FileField(null=True)
 
     category = models.CharField(max_length=200, null=True)  # 카테고리 설정
 

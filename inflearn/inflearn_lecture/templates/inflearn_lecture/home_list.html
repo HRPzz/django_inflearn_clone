@@ -5,12 +5,21 @@
     <h2>인기 강의</h2>
 
     <!-- texts: db 에 있는 myText 데이터 -->
+    <div class="row">
     {% for text in texts %}
-        <img src="{{ text.img_url }}" width="100">
-        <br>
-        {{ text.title }}
-        <br>
+        
+            <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="../../media/{{ text.img_url }}" alt="../../media/{{ text.img_url }}">
+                <div class="caption">
+                    <h3>{{ text.title }}</h3>
+                </div>
+            </a>
+            </div>
+            ...
+        
 
     {% endfor %}
+    </div>
 
 {% endblock %}
