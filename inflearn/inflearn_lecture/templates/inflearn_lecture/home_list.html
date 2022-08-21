@@ -6,20 +6,20 @@
 
     <!-- texts: db 에 있는 myText 데이터 -->
     <div class="row">
-    {% for text in texts %}
-        
-            <div class="col-xs-6 col-md-3">
-            <a href="#" class="thumbnail">
-                <img src="../../media/{{ text.img_url }}" alt="../../media/{{ text.img_url }}">
-                <div class="caption">
-                    <h3>{{ text.title }}</h3>
+        {% for text in texts %}
+            
+                <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail">
+                    <img src="../../media/{{ text.img_url }}" alt="../../media/{{ text.img_url }}">
+                    <div class="caption">
+                        <h3>{{ text.title }}</h3>
+                    </div>
+                </a>
                 </div>
-            </a>
-            </div>
-            ...
-        
+                ...
+            
 
-    {% endfor %}
+        {% endfor %}
     </div>
 
 {% endblock %}
