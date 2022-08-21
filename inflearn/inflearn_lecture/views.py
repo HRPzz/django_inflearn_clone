@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import myText
@@ -54,3 +54,7 @@ def join(request):
 def logout(request):
     auth.logout(request)  # 로그아웃
     return redirect('/')  # 로그아웃 끝나고 홈으로 돌아감
+
+def lecture_list_info(request, pk):  # pk: 게시글 id 값
+    board_contents = get_object_or_404(myText, pk=pk)
+    return render(request, 'inflearn_lecture/lecture_list_info.html', {'board_contents': board_contents})  # templates/inflearn_lecture/lecture_list_info.html 와 연결, board_contents 라는 변수에 담아서 board_contents (myText, pk) 데이터를 보냄

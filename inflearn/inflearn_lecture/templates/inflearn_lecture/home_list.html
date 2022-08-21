@@ -9,15 +9,13 @@
         {% for text in texts %}
             
                 <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                    <img src="../../media/{{ text.img_url }}" alt="../../media/{{ text.img_url }}">
-                    <div class="caption">
-                        <h3>{{ text.title }}</h3>
-                    </div>
-                </a>
-                </div>
-                ...
-            
+                    <a href="{% url 'lecture_list_info' pk=text.pk %}" class="thumbnail"> <!-- lecture_list_info/[pk] 페이지로 연결 -->
+                        <img src="../../media/{{ text.img_url }}" alt="../../media/{{ text.img_url }}">
+                        <div class="caption">
+                            <h3>{{ text.title }}</h3>
+                        </div>
+                    </a>
+                </div>            
 
         {% endfor %}
     </div>
