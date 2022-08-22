@@ -57,10 +57,15 @@ def logout(request):
 
 def lecture_list_info(request, pk):  # pk: 게시글 id 값
     board_contents = get_object_or_404(myText, pk=pk)
+    comment = Comment.objects.filter(lecture=board_contents)
+    print('**** comment?', comment)  # 댓글 확인
+
+    if request.user.is_authenticated:
+        print("**** 현재 로그인한 유저 이름?", request.user.username)  # 현재 로그인한 유저의 이름 # 굳이 아래의 'writer = request.POST['writer']' 코드처럼 입력받지 않아도 알 수 있음
 
     if request.method == 'POST':  # POST 요청이 들어오면 댓글 생성 진행
         rate = request.POST['rate']
-        writer = request.POST['writer']
+        writer = request.POST['writer']  # 현재 로그인한 유저의 이름
         comment = request.POST['comment']
 
         Comment.objects.create(lecture=board_contents,
@@ -71,4 +76,6 @@ def lecture_list_info(request, pk):  # pk: 게시글 id 값
         
         return redirect('/lecture_list/' + str(pk))
 
-    return render(request, 'inflearn_lecture/lecture_list_info.html', {'board_contents': board_contents})  # templates/inflearn_lecture/lecture_list_info.html 와 연결, board_contents 라는 변수에 담아서 board_contents (myText, pk) 데이터를 보냄
+    return render(request, 'inflearn_lecture/lecture_list_info.html',
+                {'board_contents': board_contents, 'comment': comment,}
+                )  # templates/inflearn_lecture/lecture_list_info.html 와 연결, board_contents 라는 변수에 담아서 board_contents (myText, pk), comment 데이터를 보냄
