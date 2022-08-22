@@ -17,7 +17,8 @@
 
     <!-- login.html 재활용 -->
     <div style="width: 800px; margin: auto;">
-        <form>
+        <!-- html 에서 views 로 form 데이터 넘김 -->
+        <form method="POST" action="{% url 'lecture_list_info' pk=board_contents.pk %}">
             {% csrf_token %}  <!-- 보안 설정 -->
             <div class="form-group">
                 <label for="exampleInputEmail1">평점</label>

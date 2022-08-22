@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
-from .models import myText
+from .models import myText, Comment
 
 
 # Create your views here.
 def home_list(request):
-    texts = myText.objects.filter()  # db 에 있는 myText 데이터를 모두 가져옴
+    texts = myText.objects.filter()  # 게시글(db 에 있는 myText 데이터)를 모두 가져옴
     return render(request, 'inflearn_lecture/home_list.html', {'texts': texts})  # templates/inflearn_lecture/home_list.html 와 연결, texts 라는 변수에 담아서 myText 데이터를 보냄
 
 def lecture_list(request):
@@ -57,4 +57,18 @@ def logout(request):
 
 def lecture_list_info(request, pk):  # pk: 게시글 id 값
     board_contents = get_object_or_404(myText, pk=pk)
+
+    if request.method == 'POST':  # POST 요청이 들어오면 댓글 생성 진행
+        rate = request.POST['rate']
+        writer = request.POST['writer']
+        comment = request.POST['comment']
+
+        Comment.objects.create(lecture=board_contents,
+                                writer=writer,
+                                rate=rate,
+                                comment=comment
+                                )  # 댓글 생성
+        
+        return redirect('/lecture_list/' + str(pk))
+
     return render(request, 'inflearn_lecture/lecture_list_info.html', {'board_contents': board_contents})  # templates/inflearn_lecture/lecture_list_info.html 와 연결, board_contents 라는 변수에 담아서 board_contents (myText, pk) 데이터를 보냄
