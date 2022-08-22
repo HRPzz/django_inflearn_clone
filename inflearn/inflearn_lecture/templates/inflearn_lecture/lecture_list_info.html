@@ -15,4 +15,25 @@
         {{ board_contents.board_text | safe }} <!-- 텍스트가 아니라 html 로 읽게 만듦 -->
     </div>
 
+    <!-- login.html 재활용 -->
+    <div style="width: 800px; margin: auto;">
+        <form>
+            {% csrf_token %}  <!-- 보안 설정 -->
+            <div class="form-group">
+                <label for="exampleInputEmail1">평점</label>
+                <input name="rate" type="number" class="form-control" placeholder="평점"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">글쓴이</label>
+                <input name="writer" type="text" class="form-control" placeholder="글쓴이"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">댓글</label>
+                <input name="comment" type="text" class="form-control" placeholder="댓글"/>
+            </div>
+
+            <button type="submit" class="btn btn-default">제출</button>
+        </form>
+    </div>
+
 {% endblock %}
