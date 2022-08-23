@@ -15,7 +15,7 @@
         {{ board_contents.board_text | safe }} <!-- 텍스트가 아니라 html 로 읽게 만듦 -->
     </div>
 
-    <!-- login.html 재활용 -->
+    <!-- 댓글 작성 폼, login.html 재활용 -->
     <div style="width: 800px; margin: auto;">
         <!-- html 에서 views 로 form 데이터 넘김 -->
         <form method="POST" action="{% url 'lecture_list_info' pk=board_contents.pk %}">
@@ -37,7 +37,7 @@
         </form>
     </div>
 
-    <!-- 댓글 보여주기 -->
+    <!-- 작성된 댓글 보여주기 -->
     <div style="width: 800px; margin: auto; padding: 10px;">
         {% for comment_item in comment %}
             <div style="border: 1px solid gray; border-radius: 10px;">
@@ -45,6 +45,12 @@
                 <h2>writer: {{ comment_item.writer }}</h2>
                 <h2>rate: {{ comment_item.rate }}</h2>
                 <h2>comment: {{ comment_item.comment }}</h2>
+
+                <!-- 댓글 삭제, html 에서 views 로 form 데이터 넘김 -->
+                <form method="POST" action="{% url 'comment_remove' pk=comment_item.pk %}">
+                    {% csrf_token %}
+                    <button>삭제하기</button>
+                </form>
 
             </div>
         {% endfor %}

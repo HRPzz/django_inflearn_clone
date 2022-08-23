@@ -79,3 +79,9 @@ def lecture_list_info(request, pk):  # pk: 게시글 id 값
     return render(request, 'inflearn_lecture/lecture_list_info.html',
                 {'board_contents': board_contents, 'comment': comment,}
                 )  # templates/inflearn_lecture/lecture_list_info.html 와 연결, board_contents 라는 변수에 담아서 board_contents (myText, pk), comment 데이터를 보냄
+
+def comment_remove(request, pk):
+    if request.method == 'POST':  # POST 요청이 들어오면 댓글 삭제 진행
+        Comment.objects.get(pk=pk).delete()  # 댓글 삭제
+        
+    return redirect('/lecture_list')
