@@ -37,6 +37,43 @@
         </form>
     </div>
 
+    <!-- 강의 섹션 리스트 (하드 코딩이라 반복문으로 고칠 수 있으면 고치는 것 추천) -->
+    <div>
+        <style>
+            tr {
+                border: 1px solid gray;
+                padding: 10px;
+                background-color: lightgray;
+            }
+        </style>
+
+        <table style="width: 500px; margin: auto;">
+            <tr>
+                {% if board_contents.lecture_title1 %}
+                    <td>{{ board_contents.lecture_title1 }}</td>
+                {% endif %}
+            </tr>
+
+            <tr>
+                {% if board_contents.lecture_title2 %}
+                    <td>{{ board_contents.lecture_title2 }}</td>
+                {% endif %}
+            </tr>
+
+            <tr>
+                {% if board_contents.lecture_title3 %}
+                    <td>{{ board_contents.lecture_title3 }}</td>
+                {% endif %}
+            </tr>
+
+            <tr>
+                {% if board_contents.lecture_title4 %}
+                    <td>{{ board_contents.lecture_title4 }}</td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
+
     <!-- 작성된 댓글 보여주기 -->
     <div style="width: 800px; margin: auto; padding: 10px;">
         {% for comment_item in comment %}
