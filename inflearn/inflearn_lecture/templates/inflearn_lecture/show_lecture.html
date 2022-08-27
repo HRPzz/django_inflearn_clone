@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- 제이쿼리 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <style>
         div {
             float: left;
@@ -33,19 +37,66 @@
 </head>
 <body>
 
-    <div class="left">
+    <!-- 영상 -->
+    <div class="left lecture1">
         <!-- safe 옵션: Text -> HTML -->
         {{ board_contents.lecture_video1 | safe }}
     </div>
 
+    <!-- style="display: none;" 옵션: 처음에는 보이지 않게 설정 -->
+    <div class="left lecture2" style="display: none;">
+        {{ board_contents.lecture_video2 | safe }}
+    </div>
+
+    <div class="left lecture3" style="display: none;">
+        {{ board_contents.lecture_video3 | safe }}
+    </div>
+
+    <div class="left lecture4" style="display: none;">
+        {{ board_contents.lecture_video4 | safe }}
+    </div>
+
+    <!-- 타이틀 -->
     <div class="right">
         <ul>
-            <li>{{board_contents.lecture_title1}}</li>
-            <li>{{board_contents.lecture_title2}}</li>
-            <li>{{board_contents.lecture_title3}}</li>
-            <li>{{board_contents.lecture_title4}}</li>
+            <li class="menu" id="title1">{{board_contents.lecture_title1}}</li>
+            <li class="menu" id="title2">{{board_contents.lecture_title2}}</li>
+            <li class="menu" id="title3">{{board_contents.lecture_title3}}</li>
+            <li class="menu" id="title4">{{board_contents.lecture_title4}}</li>
         </ul>
     </div>
+
+    <!-- jQuery -->
+    <!-- 클릭한 강의 타이틀 글자 빨간색 적용, 클릭한 강의 영상만 보이게 설정 -->
+    <script>
+        $('#title1').click(function(){
+            $('.left').hide();
+            $('.lecture1').show();
+            $('.menu').css('color', 'black');
+            $('#title1').css('color', 'red');
+        });
+
+        $('#title2').click(function(){
+            $('.left').hide();
+            $('.lecture2').show();
+            $('.menu').css('color', 'black');
+            $('#title2').css('color', 'red');
+        });
+
+        $('#title3').click(function(){
+            $('.left').hide();
+            $('.lecture3').show();
+            $('.menu').css('color', 'black');
+            $('#title3').css('color', 'red');
+        });
+
+        $('#title4').click(function(){
+            $('.left').hide();
+            $('.lecture4').show();
+            $('.menu').css('color', 'black');
+            $('#title4').css('color', 'red');
+        });
+    </script>
 
 </body>
 </html>
