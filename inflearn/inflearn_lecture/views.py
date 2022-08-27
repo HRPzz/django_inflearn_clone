@@ -103,3 +103,7 @@ def create_lecture(request):
     lecture_form = LectureForm()  # inflearn_lecture/forms.py 에서 생성한 폼
 
     return render(request, 'inflearn_lecture/create_lecture.html', {'lecture_form': lecture_form})
+
+def my_lecture(request):
+    lectures = myText.objects.filter(author=request.user)  # 로그인한 유저가 만든 강의만 가져옴
+    return render(request, 'inflearn_lecture/my_lecture.html', {'lectures': lectures})
