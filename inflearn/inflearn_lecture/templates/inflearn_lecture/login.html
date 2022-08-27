@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <div style="width: 500px; margin: auto; margin-top: 200px, margin-bottom: 200px;">
+    <div style="width: 500px; margin: auto; margin-top: 200px; margin-bottom: 200px;">
         <!-- html 에서 views 로 form 데이터 넘김 -->
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}  <!-- 보안 설정 -->
