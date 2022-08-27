@@ -50,7 +50,13 @@
         <table style="width: 500px; margin: auto;">
             <tr>
                 {% if board_contents.lecture_title1 %}
-                    <td>{{ board_contents.lecture_title1 }}</td>
+                    <td>
+                        {{board_contents.pk}}
+                        <!-- <a href="{% url 'show_lecture' pk=board_contents.pk %}"> -->
+                        <a href="{% url 'show_lecture' pk=board_contents.pk %}">
+                        {{ board_contents.lecture_title1 }}
+                        </a>
+                    </td>
                 {% endif %}
             </tr>
 

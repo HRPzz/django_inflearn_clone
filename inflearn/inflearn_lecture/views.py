@@ -85,3 +85,7 @@ def comment_remove(request, pk):
         Comment.objects.get(pk=pk).delete()  # 댓글 삭제
         
     return redirect('/lecture_list')
+
+def show_lecture(request, pk):
+    board_contents = get_object_or_404(myText, pk=pk)
+    return render(request, 'inflearn_lecture/show_lecture.html', {'board_contents': board_contents})

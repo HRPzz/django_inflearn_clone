@@ -17,13 +17,13 @@ class myText(models.Model):
     # 강의 섹션 4개로 고정시키고 하드 코딩
     # - 실제로는 강의 섹션이 점점 늘어나는 것까지 고려해서 리스트 형식(가변 데이터)으로 받아야 함 => 'django model list' 구글링
     lecture_title1 = models.CharField(max_length=200, null=True)
-    lecture_video1 = models.CharField(max_length=200, null=True)
+    lecture_video1 = models.CharField(max_length=500, null=True)
     lecture_title2 = models.CharField(max_length=200, null=True)
-    lecture_video2 = models.CharField(max_length=200, null=True)
+    lecture_video2 = models.CharField(max_length=500, null=True)
     lecture_title3 = models.CharField(max_length=200, null=True)
-    lecture_video3 = models.CharField(max_length=200, null=True)
+    lecture_video3 = models.CharField(max_length=500, null=True)
     lecture_title4 = models.CharField(max_length=200, null=True)
-    lecture_video4 = models.CharField(max_length=200, null=True)
+    lecture_video4 = models.CharField(max_length=500, null=True)
 
     def publish(self):
         self.save()
