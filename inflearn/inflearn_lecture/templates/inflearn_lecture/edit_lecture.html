@@ -1,0 +1,16 @@
+{% extends 'inflearn_lecture/base.html' %}
+
+{% block content %}
+
+    <!-- create_lecture.html 복붙하고 url 수정함 -->
+    <div style="width: 700px; margin: auto; padding: 40px;">
+        <!-- enctype 속성: 폼 데이터가 서버로 전송될 때 해당 데이터가 인코딩되는 방식, POST 에만 사용 가능 -->
+        <!-- enctype="multipart/form-data": 파일/이미지가 포함된 폼을 전송할 때 사용 -->
+        <form action="{% url 'edit_lecture' pk=pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %} <!-- 보안 설정 -->
+            {{ lecture_form.as_p }}
+            <button type="submit">저장</button>
+        </form>
+    </div>
+
+{% endblock %}

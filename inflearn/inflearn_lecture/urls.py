@@ -11,6 +11,7 @@ urlpatterns = [
     path('show_lecture/<int:pk>', views.show_lecture, name='show_lecture'),
     path('create_lecture/', views.create_lecture, name='create_lecture'),
     path('my_lecture/', views.my_lecture, name='my_lecture'),
+    path('edit_lecture/<int:pk>', views.edit_lecture, name='edit_lecture'),
 
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),

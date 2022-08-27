@@ -107,3 +107,22 @@ def create_lecture(request):
 def my_lecture(request):
     lectures = myText.objects.filter(author=request.user)  # 로그인한 유저가 만든 강의만 가져옴
     return render(request, 'inflearn_lecture/my_lecture.html', {'lectures': lectures})
+
+def edit_lecture(request, pk):
+    lecture = get_object_or_404(myText, pk=pk)  # 이미 만들어진 폼(강의)을 그대로 가져옴
+    
+    if request.method == 'POST':  # POST 요청이 들어오면 강의 수정 진행
+        lecture_form = LectureForm(request.POST, request.FILES, instance=lecture)
+
+        if lecture_form.is_valid():  # 값이 있는가
+            lecture = lecture_form.save(commit=False)  # 폼에 내용 저장
+            lecture.author = request.user  # 글 쓴 사람 == 로그인한 유저
+            lecture.save()  # 모델 저장
+
+            return redirect('/my_lecture')
+    else:
+        lecture_form = LectureForm(instance=lecture)
+    
+    return render(request, 'inflearn_lecture/edit_lecture.html',
+                {'lecture_form': lecture_form, 'pk': pk}
+                )
