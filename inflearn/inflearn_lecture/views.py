@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import myText, Comment
+from .forms import LectureForm
 
 
 # Create your views here.
@@ -91,4 +92,14 @@ def show_lecture(request, pk):
     return render(request, 'inflearn_lecture/show_lecture.html', {'board_contents': board_contents})
 
 def create_lecture(request):
-    return render(request, 'inflearn_lecture/create_lecture.html')
+    if request.method == 'POST':  # POST 요청이 들어오면 강의 만들기 진행
+        form = LectureForm(request.POST, request.FILES)  # html 에서 폼 받아오기
+        if form.is_valid():  # 값이 있는가
+            myText = form.save(commit=False)  # 폼에 내용 저장
+            myText.author = request.user  # 글 쓴 사람 == 로그인한 유저
+            myText.save()  # 모델 저장
+            return redirect('/')
+    
+    lecture_form = LectureForm()  # inflearn_lecture/forms.py 에서 생성한 폼
+
+    return render(request, 'inflearn_lecture/create_lecture.html', {'lecture_form': lecture_form})
